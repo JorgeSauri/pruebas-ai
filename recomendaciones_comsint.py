@@ -16,6 +16,26 @@ class Recomendador():
                  nutricion='nutricion.csv',
                  canasta='canasta_basica.csv',
                  encoding="ISO-8859-1"):
+        
+        """
+            La clase Recomendador carga los datasets: fuente, nutricion y canasta; e inicializa los parámetros
+            para recomendar una lista de recetas de acuerdo a ciertas características. Utiliza la librería de DeepLearning
+            SpaCy para NLP para buscar similitudes entre el recetario (fuente) y los ingredientes de la canasta básica (canasta).
+
+            Una vez instanciada la clase, para poder utilizarla por primera vez, hay que llamar al método: ProcesarRecetario() para
+            obtener una lista de elementos más similares a la canasta básica proporcionada, y luego se llama al método Calcular_InfoNutricional()
+            si se desea agregarle a ésta lista la información nutricional y costos de cada receta (Esta información es estimada, se
+            utiliza SpaCy para encontrar similitudes entre cada ingrediente de la canasta básica y cada ingrediente de la receta,
+            sin embargo los valores tanto nutricionales como de costos dependerán mucho del dataframe proporcionado en el parámetro 'nutricion'.
+                        
+            Parámetros:
+            -----------------------------------------------------------------------------------------------------------
+            @fuente: Ruta y archivo csv del recetario.
+            @nutricion: Ruta y archivo csv del dataset de información nutricional
+            @canasta: Ruta y archivo csv de la canasta básica
+            @encoding: Tipo de codificación del archivo (utf-8 o iso-8859-1)
+        """
+        
         # cargamos el modelo entrenado en español
         self.nlp = spacy.load("es_core_news_md")
 
@@ -183,6 +203,9 @@ class Recomendador():
                           col_title='nombre_del_platillo', col_ingredientes='ingredientes',
                           similitud=0.6, max_rows=20):
         """
+          Procesa el recetario cargado al instanciar la clase, y trata de encontrar las recetas más
+          similares en cuanto a lista de ingredientes con el dataset de canasta básica.
+
           Parámetros:
           -----------------------------------------------------------------------------------------------------------
           @col_title: Nombre de la columna del csv del titulo de la receta
