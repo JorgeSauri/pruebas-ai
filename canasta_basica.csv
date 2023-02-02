@@ -1,0 +1,31 @@
+id_prod,producto,precio_super_min,precio_super_max,gramos,precio_min_gramo,precio_max_gramo
+1,aceite mixto,36.5,39.99,1000,0.0365,0.03999
+2,arroz largo,17.9,23.9,1000,0.0179,0.0239
+3,azúcar estándar,20.5,24,1000,0.0205,0.024
+4,harina de trigo,12.9,17,1000,0.0129,0.017
+5,frijol flor de mayo,29.29,46,1000,0.02929,0.046
+6,frijol negro,22.3,22.5,1000,0.0223,0.0225
+7,huevo blanco,36,48.5,1000,0.036,0.0485
+8,carne molina sirloin 90-10,104,222.7,1000,0.104,0.2227
+9,bistec diezmillo de res,189,206.5,1000,0.189,0.2065
+10,aguacate hass,44.9,59.9,1000,0.0449,0.0599
+11,limón con semilla,35.7,43.9,1000,0.0357,0.0439
+12,guayaba,34.9,45,1000,0.0349,0.045
+13,manzana golden,36.9,42.9,1000,0.0369,0.0429
+14,manzana starking,46.9,59.9,1000,0.0469,0.0599
+15,naranja mediana,19.9,23.1,1000,0.0199,0.0231
+16,papaya maradol,24.8,32.9,1000,0.0248,0.0329
+17,piña,24.9,32.9,1000,0.0249,0.0329
+18,plátano,19.5,28.9,1000,0.0195,0.0289
+19,sandía,12.9,22,1000,0.0129,0.022
+20,calabaza italiana,32.9,42.9,1000,0.0329,0.0429
+21,chile poblano,34.9,64,1000,0.0349,0.064
+22,chile serrano,79.9,94,1000,0.0799,0.094
+23,cebolla bola,18.9,31.9,1000,0.0189,0.0319
+24,chayote sin espina,15.9,28.9,1000,0.0159,0.0289
+25,jitomate saladete,22.9,38.9,1000,0.0229,0.0389
+26,lechuga romana,21,34.5,1000,0.021,0.0345
+27,papa alpha,32.9,42.8,1000,0.0329,0.0428
+28,pepino,31.9,49.9,1000,0.0319,0.0499
+29,tomate verde,34.9,35.7,1000,0.0349,0.0357
+30,zanahoria mediana,13.9,14.5,1000,0.0139,0.0145
