@@ -16,7 +16,6 @@ class Recomendador():
                  nutricion='nutricion.csv',
                  canasta='canasta_basica.csv',
                  encoding="ISO-8859-1"):
-        
         """
             La clase Recomendador carga los datasets: fuente, nutricion y canasta; e inicializa los parámetros
             para recomendar una lista de recetas de acuerdo a ciertas características. Utiliza la librería de DeepLearning
@@ -27,7 +26,7 @@ class Recomendador():
             si se desea agregarle a ésta lista la información nutricional y costos de cada receta (Esta información es estimada, se
             utiliza SpaCy para encontrar similitudes entre cada ingrediente de la canasta básica y cada ingrediente de la receta,
             sin embargo los valores tanto nutricionales como de costos dependerán mucho del dataframe proporcionado en el parámetro 'nutricion'.
-                        
+
             Parámetros:
             -----------------------------------------------------------------------------------------------------------
             @fuente: Ruta y archivo csv del recetario.
@@ -35,7 +34,8 @@ class Recomendador():
             @canasta: Ruta y archivo csv de la canasta básica
             @encoding: Tipo de codificación del archivo (utf-8 o iso-8859-1)
         """
-        
+
+
         # cargamos el modelo entrenado en español
         self.nlp = spacy.load("es_core_news_md")
 
@@ -168,9 +168,9 @@ class Recomendador():
                 if token.like_num and token.text.isnumeric():
                     cantidad = float(token.text)
                     # Buscar la unidad
-                    unidad = encontrar_unidades(cad.split(token.text)[1])
+                    unidad = self.encontrar_unidades(cad.split(token.text)[1])
                     ingrediente_texto = cad.split(token.text)[1]
-                    ingrediente_texto = LimpiarString(self, ingrediente_texto)
+                    ingrediente_texto = self.LimpiarString(ingrediente_texto)
 
                     # Agrega la cantidad, la unidad y el ingrediente a las listas
                     cantidades.append(cantidad)
@@ -188,10 +188,10 @@ class Recomendador():
                         if token.text.strip() == cf:
                             cantidades.append(nf)
                             # Buscar unidades
-                            unidad = encontrar_unidades(cad.split(token.text)[1])
+                            unidad = self.encontrar_unidades(cad.split(token.text)[1])
                             unidades.append(unidad)
                             ingrediente_texto = cad.split(token.text)[1]
-                            ingrediente_texto = LimpiarString(self, ingrediente_texto)
+                            ingrediente_texto = self.LimpiarString(ingrediente_texto)
                             ingredientes_texto.append(ingrediente_texto)
                             break
 
@@ -234,7 +234,7 @@ class Recomendador():
         print('Buscando recetas con ingredientes de la canasta básica... \n')
         for i in tqdm(range(len(self.df_recetario))):
             row = self.df_recetario.iloc[i]
-            ingredientes_clean = LimpiarString(self, row[col_ingredientes])
+            ingredientes_clean = self.LimpiarString(row[col_ingredientes])
             tokenIngredientes = self.nlp(ingredientes_clean)
             similaridad = tokenIngredientes.similarity(self.nlp(canasta))
             if similaridad > similitud:
@@ -295,7 +295,7 @@ class Recomendador():
         for i in tqdm(range(len(dfFiltrados))):
             # for i in range(len(dfFiltrados)):
             row = dfFiltrados.iloc[i]
-            Cantidades, Unidades, Ingredientes = separar_ingredientes_spacy(row['ingredientes'])
+            Cantidades, Unidades, Ingredientes = self.separar_ingredientes_spacy(row['ingredientes'])
 
             # para la receta i, recorrer sus ingredientes y cantidades y buscar su info nutricional
             kcal = 0
@@ -308,7 +308,7 @@ class Recomendador():
             total_precio_max = 0
 
             for ing_index in range(len(Ingredientes)):
-                ingrediente = LimpiarString(Ingredientes[ing_index]).strip()
+                ingrediente = self.LimpiarString(Ingredientes[ing_index]).strip()
                 if ingrediente == '': continue  # Se salta los vacíos
 
                 # Buscar el ingrediente en la tabla de valores nutricionales:
