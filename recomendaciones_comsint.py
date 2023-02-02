@@ -271,8 +271,8 @@ class Recomendador():
         """
 
         # Para poder llamar a este método, debe haberse ejecutado antes ProcesarRecetas
-        if (self.DF_RecetasFiltradas == None):
-            print('\nERROR: Es necesario ejecutar primero el método ProcesarRecetas()\n')
+        if (len(self.DF_RecetasFiltradas)<=0):
+            print('No se encontraron recetas.\nEjecuta el método ProcesarRecetas()\n')
             return
 
         dfFiltrados = self.DF_RecetasFiltradas
