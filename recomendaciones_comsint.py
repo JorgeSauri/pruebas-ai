@@ -314,7 +314,7 @@ class Recomendador():
                 # Buscar el ingrediente en la tabla de valores nutricionales:
 
                 try:
-                    df_ing_nut = self.df_nutricion.loc[df_nutricion['nombre'].str.contains(ingrediente.lower())][:1]
+                    df_ing_nut = self.df_nutricion.loc[self.df_nutricion['nombre'].str.contains(ingrediente.lower())][:1]
                 except:  # Se coló algún caracter inválido en la búsqueda, saltarse este item
                     # print('Falla al parsear ingrediente:', ingrediente.lower())
                     EncontroAlimento = False
@@ -371,7 +371,7 @@ class Recomendador():
                         cb_precio_max_gramo = 0.0
 
                         # Si el ingrediente de la Canasta tiene una Similitud > 'similitud_canasta' con el ingrediente actual:
-                        cb_ing_sim = nlp(cb_prod).similarity(nlp(ingrediente))
+                        cb_ing_sim = self.nlp(cb_prod).similarity(self.nlp(ingrediente))
                         if cb_ing_sim >= similitud_canasta:
                             # print(cb_prod, 'similar a', ingrediente, 'en', cb_ing_sim)
                             cb_precio_min_gramo = float(row_canasta['precio_min_gramo'])
@@ -404,4 +404,5 @@ class Recomendador():
         self.DF_RecetasFiltradas = dfFiltrados
 
         return dfFiltrados
+
 
